@@ -42,15 +42,15 @@ The pipeline runs in four sequential stages:
 **cGAN trigger generation** (offline, one-time) → **PCPT watermark embedding** (per-user fine-tuning) → **Blockchain registration** (DCT-PHA fingerprint commit) → **ACPT authorization gate** (runtime access control)
 
 <p align="center">
-  <img src="figures/06_cgan_trigger_generation.png" alt="Conditional GAN Trigger Generation" width="850"/>
+  <img src="06_cgan_trigger_generation.png" alt="Conditional GAN Trigger Generation" width="850"/>
 </p>
 
 <p align="center">
-  <img src="figures/04_blockchain_lifecycle.png" alt="Blockchain IP Lifecycle - 7 Transaction Types" width="850"/>
+  <img src="04_blockchain_lifecycle.png" alt="Blockchain IP Lifecycle - 7 Transaction Types" width="850"/>
 </p>
 
 <p align="center">
-  <img src="figures/05_acpt_authorization_workflow.png" alt="ACPT Authorization Workflow" width="850"/>
+  <img src="05_acpt_authorization_workflow.png" alt="ACPT Authorization Workflow" width="850"/>
 </p>
 
 ---
@@ -58,7 +58,7 @@ The pipeline runs in four sequential stages:
 ## 📊 Results at a Glance
 
 <p align="center">
-  <img src="figures/07_key_results_summary.png" alt="Key Results Summary" width="850"/>
+  <img src="07_key_results_summary.png" alt="Key Results Summary" width="850"/>
 </p>
 
 ### Scalability — the core result
@@ -73,13 +73,13 @@ The pipeline runs in four sequential stages:
 *Video-frame baseline (paper): 33.74 px, N = 2 only.*
 
 <p align="center">
-  <img src="figures/14_scalability_results_n2_5_10_20.png" alt="GAN-PCPT Scalability Results" width="850"/>
+  <img src="14_scalability_results_n2_5_10_20.png" alt="GAN-PCPT Scalability Results" width="850"/>
 </p>
 
 ### GAN triggers vs. video-frame triggers
 
 <p align="center">
-  <img src="figures/09_gan_vs_video_triggers.jpeg" alt="GAN vs Video Triggers" width="850"/>
+  <img src="09_gan_vs_video_triggers.jpeg" alt="GAN vs Video Triggers" width="850"/>
 </p>
 
 ### Comparison with prior work
@@ -95,7 +95,7 @@ The pipeline runs in four sequential stages:
 | **GAN-PCPT (this work)** | **Black** | **0%** | **Yes** | **20+** | **Full (7 tx types)** | **2026** |
 
 <p align="center">
-  <img src="figures/15_final_comparison_paper_vs_gan_pcpt.jpeg" alt="Final Comparison: Original PCPT vs GAN-PCPT" width="850"/>
+  <img src="15_final_comparison_paper_vs_gan_pcpt.jpeg" alt="Final Comparison: Original PCPT vs GAN-PCPT" width="850"/>
 </p>
 
 ---
@@ -107,7 +107,7 @@ The pipeline runs in four sequential stages:
 PCPT was verified on **LeNet-5 (MNIST)**, **VGG-16, GoogLeNet, and ResNet-18 (CIFAR-10)** — in every case the stolen model's trigger set correctly identifies the leaker with 100% accuracy and 0% on every other user.
 
 <p align="center">
-  <img src="figures/10_pcpt_traceability_all_architectures.png" alt="Traceability across architectures" width="850"/>
+  <img src="10_pcpt_traceability_all_architectures.png" alt="Traceability across architectures" width="850"/>
 </p>
 
 ### False-positive rate & fidelity
@@ -115,7 +115,7 @@ PCPT was verified on **LeNet-5 (MNIST)**, **VGG-16, GoogLeNet, and ResNet-18 (CI
 Zero FPR is achieved across all architectures (vs. 7.92–18.92% for KeyNet), with an average accuracy drop of ~9% under MLP approximations of the original CNN architectures.
 
 <p align="center">
-  <img src="figures/11_fpr_and_fidelity.png" alt="False Positive Rate and Fidelity" width="850"/>
+  <img src="11_fpr_and_fidelity.png" alt="False Positive Rate and Fidelity" width="850"/>
 </p>
 
 ### Robustness under pruning attack
@@ -123,7 +123,7 @@ Zero FPR is achieved across all architectures (vs. 7.92–18.92% for KeyNet), wi
 The embedded watermark survives up to **80% parameter pruning** before the watermark and base-task accuracy curves converge — at which point the model itself is no longer usable.
 
 <p align="center">
-  <img src="figures/12_pruning_attack_robustness.jpeg" alt="Pruning Attack Robustness" width="850"/>
+  <img src="12_pruning_attack_robustness.jpeg" alt="Pruning Attack Robustness" width="850"/>
 </p>
 
 ### Security against forged ownership claims (Eve)
@@ -131,7 +131,7 @@ The embedded watermark survives up to **80% parameter pruning** before the water
 Four forgery attempts (random noise, gradient fill, checkerboard, stripes) all produce SSIM ≤ 0.014 against the owner's real triggers — far below the 0.9 validity threshold.
 
 <p align="center">
-  <img src="figures/13_security_eve_forged_triggers.jpeg" alt="Security Analysis - Forged Triggers" width="850"/>
+  <img src="13_security_eve_forged_triggers.jpeg" alt="Security Analysis - Forged Triggers" width="850"/>
 </p>
 
 ---
@@ -151,10 +151,10 @@ Four forgery attempts (random noise, gradient fill, checkerboard, stripes) all p
 ```
 .
 ├── README.md
+├── LICENSE
 ├── requirements.txt
-├── notebook/
-│   └── GAN_PCPT_implementation.ipynb   # End-to-end implementation (run top to bottom)
-└── figures/                            # All result and architecture figures
+├── GAN_PCPT_implementation.ipynb   # End-to-end implementation (run top to bottom)
+└── *.png / *.jpeg                 # Architecture diagrams and result figures
 ```
 
 ---
@@ -162,10 +162,10 @@ Four forgery attempts (random noise, gradient fill, checkerboard, stripes) all p
 ## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/<your-username>/gan-pcpt-acpt.git
+git clone https://github.com/techmugger/gan-pcpt-acpt.git
 cd gan-pcpt-acpt
 pip install -r requirements.txt
-jupyter notebook notebook/GAN_PCPT_implementation.ipynb
+jupyter notebook GAN_PCPT_implementation.ipynb
 ```
 
 The notebook is organized into 26 self-contained cells covering: core classes → datasets → base model training → PCPT watermarking → blockchain registration → ACPT authorization → cGAN trigger generation → N = 2/5/10/20 scalability experiments → final result tables. **Run cells sequentially from top to bottom** — later cells depend on objects created earlier.
